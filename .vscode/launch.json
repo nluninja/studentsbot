@@ -1,0 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Batch Query - queries.txt",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/batch_query.py",
+            "args": [
+                "queries.txt",
+                "debug_results.json",
+                "--verbose"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "python": "${workspaceFolder}/venv/bin/python",
+            "justMyCode": false,
+            "stopOnEntry": false
+        }
+    ]
+}
+EOF < /dev/null

@@ -27,7 +27,7 @@ Un chatbot intelligente per fornire informazioni su corsi, esami, servizi e proc
 ### Setup Rapido
 ```bash
 # Clona il repository
-git clone https://github.com/YOUR_USERNAME/studentsbot.git
+git clone https://github.com/nluninja/studentsbot.git
 cd studentsbot
 
 # Setup automatico

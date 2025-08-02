@@ -98,11 +98,14 @@ studentsbot/
 ├── 📝 queries.txt            # Domande estratte (56 domande)
 ├── 📄 domande chatbot.xlsx   # File Excel con domande
 ├── 📁 output_crawler/        # Documenti crawlati (150+ file)
-├── 🗄️ index/                 # Vectorstore FAISS
-├── 🔧 .vscode/               # Configurazione debug VSCode
+├── 🗄️ index/                 # Vectorstore FAISS (generato)
 ├── 🐍 venv/                  # Ambiente virtuale Python
 ├── ⚙️ activate_studentsbot.sh # Script setup automatico
-└── 📦 requirements.txt       # Dipendenze Python
+├── 📦 requirements.txt       # Dipendenze Python
+├── 📖 README.md              # Documentazione
+├── 🚫 .gitignore            # File da ignorare
+├── ⚙️ .env.example          # Template variabili ambiente
+└── 📄 LICENSE               # Licenza MIT
 ```
 
 ## 🎯 Comandi Disponibili
@@ -138,14 +141,14 @@ BATCH_SIZE = 100                    # Dimensione batch indicizzazione
 BATCH_WAIT = 2                      # Pausa tra batch (secondi)
 ```
 
-## 🐛 Debug in VSCode
+## 🐛 Debug e Sviluppo
 
-Il progetto include configurazioni VSCode per il debug:
+Per il debug del codice:
 
-1. Apri il progetto in VSCode
-2. Vai al pannello Debug (`Ctrl+Shift+D`)
-3. Seleziona "Debug Batch Query - queries.txt"
-4. Premi `F5` per iniziare il debug
+1. **Modalità verbose**: Usa `--verbose` nei comandi per output dettagliato
+2. **Test con sample**: Crea file di test con poche domande per debug veloce
+3. **Logs**: Controlla i messaggi di errore nel terminale
+4. **VSCode**: Configura il tuo ambiente di debug come preferisci
 
 ## 📊 Esempi di Domande
 

@@ -36,7 +36,7 @@ venv.bak/
 .env.production.local
 
 # IDEs
-.vscode/settings.json
+.vscode/
 .idea/
 *.swp
 *.swo

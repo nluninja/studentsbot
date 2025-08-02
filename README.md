@@ -87,6 +87,40 @@ python extract_queries.py  # crea data/queries.txt
 python crawler.py
 ```
 
+### 📊 Valutazione delle Risposte
+
+Il progetto include diversi strumenti per valutare la qualità delle risposte del chatbot:
+
+#### 1. Valutazione Automatica (rageval.py)
+```bash
+# Valutazione completa con metriche multiple
+python rageval.py risultati.json
+
+# Salva risultati dettagliati
+python rageval.py risultati.json valutazione_dettagliata.json
+```
+
+**Metriche calcolate:**
+- **Similarità testuale** (difflib SequenceMatcher)
+- **ROUGE-1, ROUGE-2, ROUGE-L** (n-gram overlap e LCS)
+- **BLEU score** (precision con brevity penalty)
+- **Keyword overlap** (precision, recall, F1)
+
+#### 2. Valutazione LLM-as-Judge (llm_as_judge.py)
+```bash
+# Usa il modello LLM per giudicare equivalenza semantica
+python llm_as_judge.py risultati.json
+
+# Salva giudizi dettagliati
+python llm_as_judge.py risultati.json -o giudizi_llm.json
+```
+
+**Caratteristiche LLM Judge:**
+- Valutazione semantica intelligente
+- Confidence score per ogni giudizio
+- Reasoning dettagliato per le decisioni
+- Gestione robusta degli errori
+
 ## 📁 Struttura Progetto
 
 ```
@@ -95,6 +129,8 @@ studentsbot/
 ├── 📊 batch_query.py          # Elaborazione massive query
 ├── 🕷️ crawler.py              # Web crawler per raccolta dati
 ├── 📋 extract_queries.py      # Estrazione domande da Excel
+├── 📊 rageval.py              # Valutazione completa (ROUGE, BLEU, etc)
+├── 🧠 llm_as_judge.py         # Valutazione semantica con LLM
 ├── 📁 data/                  # Dati di input e test
 │   ├── 📄 domande chatbot.xlsx  # File Excel con domande
 │   └── 📝 queries.txt          # Domande estratte (56 domande)

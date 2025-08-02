@@ -1,5 +1,21 @@
+# Core LangChain dependencies
 langchain>=0.1.0
 langchain-community>=0.0.20
 langchain-google-genai>=0.0.11
-python-dotenv>=1.0.0
+
+# Vector store
 faiss-cpu>=1.7.4
+
+# Environment and configuration
+python-dotenv>=1.0.0
+
+# Data processing
+pandas>=2.0.0
+
+# Web scraping (for crawler.py)
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+markdownify>=0.11.0
+
+# Standard library extensions (usually included but good to specify)
+typing-extensions>=4.5.0

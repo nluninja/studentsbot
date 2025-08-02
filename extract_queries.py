@@ -54,8 +54,8 @@ def extract_queries_from_excel(excel_file, output_file):
 
 def main():
     """Funzione principale."""
-    excel_file = "domande chatbot.xlsx"
-    output_file = "queries.txt"
+    excel_file = "data/domande chatbot.xlsx"
+    output_file = "data/queries.txt"
     
     # Controlla se il file Excel esiste
     if not os.path.exists(excel_file):

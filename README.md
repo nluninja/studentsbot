@@ -72,13 +72,13 @@ python bot_review.py --help
 ### Elaborazione Massive
 ```bash
 # Da file Excel (colonna A)
-python batch_query.py "domande.xlsx" risultati.json --verbose
+python batch_query.py "data/domande chatbot.xlsx" risultati.json --verbose
 
 # Da file di testo
-python batch_query.py queries.txt risultati.csv
+python batch_query.py data/queries.txt risultati.csv
 
 # Estrai domande da Excel
-python extract_queries.py  # crea queries.txt
+python extract_queries.py  # crea data/queries.txt
 ```
 
 ### Web Crawling
@@ -95,8 +95,9 @@ studentsbot/
 ├── 📊 batch_query.py          # Elaborazione massive query
 ├── 🕷️ crawler.py              # Web crawler per raccolta dati
 ├── 📋 extract_queries.py      # Estrazione domande da Excel
-├── 📝 queries.txt            # Domande estratte (56 domande)
-├── 📄 domande chatbot.xlsx   # File Excel con domande
+├── 📁 data/                  # Dati di input e test
+│   ├── 📄 domande chatbot.xlsx  # File Excel con domande
+│   └── 📝 queries.txt          # Domande estratte (56 domande)
 ├── 📁 output_crawler/        # Documenti crawlati (150+ file)
 ├── 🗄️ index/                 # Vectorstore FAISS (generato)
 ├── 🐍 venv/                  # Ambiente virtuale Python
@@ -121,9 +122,9 @@ studentsbot/
 ### Elaborazione Batch
 | Formato | Esempio |
 |---------|---------|
-| Excel | `python batch_query.py domande.xlsx risultati.json` |
-| CSV | `python batch_query.py domande.csv risultati.json` |
-| TXT | `python batch_query.py queries.txt risultati.csv` |
+| Excel | `python batch_query.py data/domande.xlsx risultati.json` |
+| CSV | `python batch_query.py data/domande.csv risultati.json` |
+| TXT | `python batch_query.py data/queries.txt risultati.csv` |
 
 ## 🔧 Configurazione
 

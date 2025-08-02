@@ -1,0 +1,119 @@
+{
+  "evaluation_timestamp": "2025-08-02T15:32:50.708534",
+  "aggregate_metrics": {
+    "total_responses": 1,
+    "similarity": {
+      "mean": 0.0037914691943127963,
+      "min": 0.0037914691943127963,
+      "max": 0.0037914691943127963,
+      "std": 0.0
+    },
+    "keyword_precision": {
+      "mean": 0.3153153153153153,
+      "min": 0.3153153153153153,
+      "max": 0.3153153153153153
+    },
+    "keyword_recall": {
+      "mean": 0.3888888888888889,
+      "min": 0.3888888888888889,
+      "max": 0.3888888888888889
+    },
+    "keyword_f1": {
+      "mean": 0.34825870646766166,
+      "min": 0.34825870646766166,
+      "max": 0.34825870646766166
+    },
+    "rouge_metrics": {
+      "rouge_1_f1": {
+        "mean": 0.3883495145631068,
+        "min": 0.3883495145631068,
+        "max": 0.3883495145631068
+      },
+      "rouge_2_f1": {
+        "mean": 0.15609756097560976,
+        "min": 0.15609756097560976,
+        "max": 0.15609756097560976
+      },
+      "rouge_l_f1": {
+        "mean": 0.22330097087378642,
+        "min": 0.22330097087378642,
+        "max": 0.22330097087378642
+      }
+    },
+    "bleu_metrics": {
+      "mean": 0.10139669452501039,
+      "min": 0.10139669452501039,
+      "max": 0.10139669452501039
+    },
+    "quality_distribution": {
+      "excellent (≥0.8)": {
+        "count": 0,
+        "percentage": 0.0
+      },
+      "good (0.6-0.8)": {
+        "count": 0,
+        "percentage": 0.0
+      },
+      "fair (0.4-0.6)": {
+        "count": 0,
+        "percentage": 0.0
+      },
+      "poor (<0.4)": {
+        "count": 1,
+        "percentage": 100.0
+      }
+    }
+  },
+  "detailed_evaluations": [
+    {
+      "query": "Quali sono i corsi magistrali attivi all’Università Cattolica?",
+      "answer": "Ecco l'elenco dei corsi di laurea magistrale attivi all'Università Cattolica:\n\n*   Agricultural and Food Economics - Economia agroalimentare (Italiano English)\n*   Artificial Intelligence and Cybersecurity (Italiano English)\n*   Banking and Finance (Italiano English)\n*   Biologia (Italiano)\n*   Biomedical Sciences and Technologies (Italiano English)\n*   Comunicazione per l'impresa, i media e le organizzazioni complesse (Italiano)\n*   Data Analytics for Business and Economics - Analisi dei dati per le aziende e l'economia (Italiano English)\n*   Direzione e consulenza aziendale (Italiano)\n*   Economics (Italiano English)\n*   Economics and Management of Arts, Culture, Media and Entertainment - Economia e management dell'arte, della cultura, dei media e dell'intrattenimento (Italiano English)\n*   European Economics and Business Law (Italiano English)\n*   Filologia Moderna (Italiano)\n*   Filosofia (Italiano)\n*   Food processing: innovation and tradition (Italiano English)\n*   Gestione dei contenuti digitali per i media, le imprese e i patrimoni culturali (Italiano)\n*   Global Business Management (Italiano English)\n*   Innovation and Technology Management (Italiano English)\n*   International Management (Italiano English)\n*   Interpretariato e Traduzione (Italiano)\n*   Investigative Sciences (Italiano English)\n*   Lingue e letterature straniere (Italiano)\n*   Management (Italiano English)\n*   Management della transizione digitale (Italiano)\n*   Marketing e mercati globali (Italiano)\n*   Mathematics (Italiano English)\n*   Media Education (Italiano)\n*   Medicina e Chirurgia (Italiano)\n*   Metodologie per la conservazione e il restauro dei beni culturali (Italiano)\n*   Pedagogia (Italiano)\n*   Psicologia (Italiano)\n*   Psicologia per il benessere e la salute nei contesti lavorativi (Italiano)\n*   Relazioni Internazionali (Italiano)\n*   Scienze agrarie (Italiano)\n*   Scienze dell'educazione alimentare (Italiano)\n*   Scienze della Formazione Primaria (Italiano)\n*   Scienze statistiche (Italiano)\n*   Service Management (Italiano English)\n*   Sociologia e ricerca sociale (Italiano)\n*   Sustainable Development (Italiano English)\n*   Teorie e strumenti per la comunicazione (Italiano)\n*   Viticoltura ed enologia (Italiano)",
+      "true_answer": "Actuarial sciences, risk and data analysis\nAgricoltura sostenibile e di precisione\nAgricultural and food economics\nApplied data science for banking and finance\nArcheologia e Storia dell'arte\nBanking and Finance\nBanking e consulting\nBiotecnologie per la medicina personalizzata\nCommunication for Business, Media  and Culture\nComunicazione per l'impresa, i media e le organizzazioni complesse - CIMO\nConsulenza pedagogica per la disabilità e la marginalità\nConsumer behaviour: psychology applied to food, health and environment\nData analytics for business\nDigital learning e media education\nDirezione e consulenza aziendale\nEconomia\nEconomia dei mercati e degli intermediari finanziari\nEconomia e gestione dei beni culturali e dello spettacolo\nEconomia e legislazione d'impresa\nEconomics\nEuropean studies in investor relations and financial communication\nFilologia moderna\nFilosofia\nMatematica\nScienze e tecniche del benessere e dello sport\nScienze e tecnologie alimentari\nScienze infermieristiche e ostetriche\nScienze linguistiche\nScienze pedagogiche e servizi alla persona\nScienze riabilitative delle professioni sanitarie\nThe Art and Industry of Narration: from Literature to Cinema and TV",
+      "similarity_score": 0.0037914691943127963,
+      "keyword_metrics": {
+        "precision": 0.3153153153153153,
+        "recall": 0.3888888888888889,
+        "f1": 0.34825870646766166,
+        "overlap_count": 35,
+        "answer_keywords": 111,
+        "true_keywords": 90
+      },
+      "length_metrics": {
+        "char_answer": 2245,
+        "char_true": 1190,
+        "char_ratio": 1.8865546218487395,
+        "words_answer": 288,
+        "words_true": 159,
+        "words_ratio": 1.8113207547169812
+      },
+      "rouge_metrics": {
+        "rouge_1": {
+          "precision": 0.3187250996015936,
+          "recall": 0.4968944099378882,
+          "f1": 0.3883495145631068
+        },
+        "rouge_2": {
+          "precision": 0.128,
+          "recall": 0.2,
+          "f1": 0.15609756097560976
+        },
+        "rouge_l": {
+          "precision": 0.18326693227091634,
+          "recall": 0.2857142857142857,
+          "f1": 0.22330097087378642
+        }
+      },
+      "bleu_metrics": {
+        "bleu": 0.10139669452501039,
+        "brevity_penalty": 1.0,
+        "precision_scores": [
+          0.3187250996015936,
+          0.128,
+          0.0642570281124498,
+          0.04032258064516129
+        ]
+      },
+      "timestamp": "2025-08-02T15:13:21.949388"
+    }
+  ]
+}

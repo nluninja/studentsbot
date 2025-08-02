@@ -16,39 +16,38 @@ import pandas as pd
 # Import the query function from bot_review
 from bot_review import query_chatbot
 
-def load_questions_from_file(file_path):
-    """Carica le domande da un file (supporta .txt, .json, .csv, .xlsx)."""
-    questions = []
+def load_questions_from_excel(file_path):
+    """Carica le domande e le risposte corrette da un file Excel con colonne 'query' e 'true_answer'."""
+    data = []
     
-    if file_path.endswith('.txt'):
-        with open(file_path, 'r', encoding='utf-8') as f:
-            questions = [line.strip() for line in f if line.strip()]
+    if not file_path.endswith(('.xlsx', '.xls')):
+        raise ValueError("Il file deve essere in formato Excel (.xlsx o .xls)")
     
-    elif file_path.endswith('.json'):
-        with open(file_path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-            if isinstance(data, list):
-                questions = data
-            elif isinstance(data, dict) and 'questions' in data:
-                questions = data['questions']
+    try:
+        # Load Excel file
+        df = pd.read_excel(file_path)
+        
+        # Check required columns
+        required_columns = ['query', 'true_answer']
+        if not all(col in df.columns for col in required_columns):
+            raise ValueError(f"Il file Excel deve contenere le colonne: {required_columns}")
+        
+        # Extract data
+        for _, row in df.iterrows():
+            query = str(row['query']).strip() if pd.notna(row['query']) else ''
+            true_answer = str(row['true_answer']).strip() if pd.notna(row['true_answer']) else ''
+            
+            if query:  # Only add rows with non-empty queries
+                data.append({
+                    'query': query,
+                    'true_answer': true_answer
+                })
+        
+    except Exception as e:
+        print(f"Errore nel caricamento del file Excel: {e}")
+        return []
     
-    elif file_path.endswith('.csv'):
-        with open(file_path, 'r', encoding='utf-8') as f:
-            reader = csv.DictReader(f)
-            questions = [row.get('question', '') for row in reader if row.get('question', '').strip()]
-    
-    elif file_path.endswith(('.xlsx', '.xls')):
-        try:
-            # Load Excel file and get column A
-            df = pd.read_excel(file_path)
-            # Get first column (column A)
-            first_column = df.iloc[:, 0]
-            questions = [str(q).strip() for q in first_column if pd.notna(q) and str(q).strip()]
-        except Exception as e:
-            print(f"Errore nel caricamento del file Excel: {e}")
-            return []
-    
-    return questions
+    return data
 
 def save_results(results, output_file):
     """Salva i risultati in un file (supporta .json, .csv)."""
@@ -64,54 +63,57 @@ def save_results(results, output_file):
     
     elif output_file.endswith('.csv'):
         with open(output_file, 'w', encoding='utf-8', newline='') as f:
-            writer = csv.DictWriter(f, fieldnames=['question', 'answer', 'true_answer', 'timestamp'])
+            writer = csv.DictWriter(f, fieldnames=['query', 'answer', 'true_answer', 'timestamp'])
             writer.writeheader()
             for result in results:
                 writer.writerow(result)
 
-def batch_query(questions, verbose=False, save_to=None):
+def batch_query(data, verbose=False, save_to=None):
     """
     Esegue query massive al chatbot.
     
     Args:
-        questions (list): Lista di domande da fare
+        data (list): Lista di dict con 'query' e 'true_answer'
         verbose (bool): Se stampare informazioni dettagliate
         save_to (str): Percorso file dove salvare i risultati
         
     Returns:
-        list: Lista di risultati con domande e risposte
+        list: Lista di risultati con query, answer e true_answer
     """
     results = []
-    total = len(questions)
+    total = len(data)
     
-    print(f"Inizio elaborazione di {total} domande...")
+    print(f"Inizio elaborazione di {total} query...")
     
-    for i, question in enumerate(questions, 1):
+    for i, item in enumerate(data, 1):
+        query = item['query']
+        true_answer = item['true_answer']
+        
         if verbose:
-            print(f"\n[{i}/{total}] Elaborando: {question}")
+            print(f"\n[{i}/{total}] Elaborando: {query}")
         else:
             print(f"Progresso: {i}/{total}")
         
         try:
-            answer = query_chatbot(question, verbose=verbose)
+            answer = query_chatbot(query, verbose=verbose)
             result = {
-                'question': question,
+                'query': query,
                 'answer': answer,
-                'true_answer': '',
+                'true_answer': true_answer,
                 'timestamp': datetime.now().isoformat()
             }
             results.append(result)
             
             if not verbose:
-                print(f"✓ Risposta ottenuta per domanda {i}")
+                print(f"✓ Risposta ottenuta per query {i}")
             
         except Exception as e:
-            error_msg = f"Errore per la domanda '{question}': {e}"
+            error_msg = f"Errore per la query '{query}': {e}"
             print(f"✗ {error_msg}")
             result = {
-                'question': question,
+                'query': query,
                 'answer': f"ERRORE: {e}",
-                'true_answer': '',
+                'true_answer': true_answer,
                 'timestamp': datetime.now().isoformat()
             }
             results.append(result)
@@ -132,26 +134,26 @@ def main():
     if len(sys.argv) < 2 or '--help' in sys.argv or '-h' in sys.argv:
         print("Batch Query Tool per StudentsBot")
         print("\nUSO:")
-        print("  python batch_query.py <file_domande> [output_file] [--verbose] [--limit N]")
-        print("\nFORMATI SUPPORTATI:")
-        print("  .txt, .json, .csv, .xlsx, .xls")
+        print("  python batch_query.py <file_excel> [output_file] [--verbose] [--limit N]")
+        print("\nFORMATO SUPPORTATO:")
+        print("  .xlsx, .xls - File Excel con colonne 'query' e 'true_answer'")
         print("\nPARAMETRI:")
         print("  --verbose     Mostra output dettagliato durante l'elaborazione")
-        print("  --limit N     Elabora solo le prime N domande del file")
+        print("  --limit N     Elabora solo le prime N query del file")
         print("  --help, -h    Mostra questo aiuto")
         print("\nESEMPI:")
-        print("  python batch_query.py data/queries.txt")
-        print("  python batch_query.py data/queries.txt risultati.csv")
-        print("  python batch_query.py data/queries.txt risultati.json --verbose")
-        print("  python batch_query.py data/queries.txt risultati.json --limit 10")
-        print("  python batch_query.py data/queries.txt risultati.json --limit 5 --verbose")
+        print("  python batch_query.py data/queries.xlsx")
+        print("  python batch_query.py data/queries.xlsx risultati.json")
+        print("  python batch_query.py data/queries.xlsx risultati.json --verbose")
+        print("  python batch_query.py data/queries.xlsx risultati.json --limit 10")
+        print("  python batch_query.py data/queries.xlsx risultati.json --limit 5 --verbose")
         print("\nESEMPI SUBSET TESTING:")
-        print("  python batch_query.py data/queries.txt test_5.json --limit 5      # Prime 5 domande")
-        print("  python batch_query.py data/queries.txt test_10.json --limit 10    # Prime 10 domande")
-        print("  python batch_query.py data/queries.txt debug.json --limit 3 --verbose  # Debug veloce")
+        print("  python batch_query.py data/queries.xlsx test_5.json --limit 5      # Prime 5 query")
+        print("  python batch_query.py data/queries.xlsx test_10.json --limit 10    # Prime 10 query")
+        print("  python batch_query.py data/queries.xlsx debug.json --limit 3 --verbose  # Debug veloce")
         sys.exit(1)
     
-    questions_file = sys.argv[1]
+    excel_file = sys.argv[1]
     output_file = sys.argv[2] if len(sys.argv) > 2 and not sys.argv[2].startswith('--') else None
     verbose = '--verbose' in sys.argv
     
@@ -172,38 +174,38 @@ def main():
             print("Errore: il valore di --limit deve essere un numero valido.")
             sys.exit(1)
     
-    if not os.path.exists(questions_file):
-        print(f"Errore: File {questions_file} non trovato.")
+    if not os.path.exists(excel_file):
+        print(f"Errore: File {excel_file} non trovato.")
         sys.exit(1)
     
-    # Carica domande
+    # Carica dati dal file Excel
     try:
-        questions = load_questions_from_file(questions_file)
-        if not questions:
-            print("Errore: Nessuna domanda trovata nel file.")
+        data = load_questions_from_excel(excel_file)
+        if not data:
+            print("Errore: Nessuna query trovata nel file Excel.")
             sys.exit(1)
         
         # Applica il limite se specificato
-        total_questions = len(questions)
-        if limit and limit < total_questions:
-            questions = questions[:limit]
-            print(f"Limite applicato: elaborazione di {limit} domande su {total_questions} totali")
+        total_queries = len(data)
+        if limit and limit < total_queries:
+            data = data[:limit]
+            print(f"Limite applicato: elaborazione di {limit} query su {total_queries} totali")
         
     except Exception as e:
-        print(f"Errore nel caricamento delle domande: {e}")
+        print(f"Errore nel caricamento dei dati: {e}")
         sys.exit(1)
     
     # Esegui batch query
-    results = batch_query(questions, verbose=verbose, save_to=output_file)
+    results = batch_query(data, verbose=verbose, save_to=output_file)
     
     # Mostra statistiche finali
     successful = len([r for r in results if not r['answer'].startswith('ERRORE:')])
     print(f"\nStatistiche finali:")
-    if limit and limit < total_questions:
-        print(f"- Domande totali nel file: {total_questions}")
-        print(f"- Domande elaborate (limite): {len(results)}")
+    if limit and limit < total_queries:
+        print(f"- Query totali nel file: {total_queries}")
+        print(f"- Query elaborate (limite): {len(results)}")
     else:
-        print(f"- Domande elaborate: {len(results)}")
+        print(f"- Query elaborate: {len(results)}")
     print(f"- Risposte riuscite: {successful}")
     print(f"- Errori: {len(results) - successful}")
 

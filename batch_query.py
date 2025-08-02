@@ -93,7 +93,7 @@ def batch_query(questions, verbose=False, save_to=None):
             print(f"Progresso: {i}/{total}")
         
         try:
-            answer = query_chatbot(question, verbose=verbose)
+            answer = query_chatbot(question, verbose=verbose, progress_info=(i, total))
             result = {
                 'question': question,
                 'answer': answer,
@@ -127,18 +127,48 @@ def main():
     """Funzione principale per uso da linea di comando."""
     load_dotenv()
     
-    if len(sys.argv) < 2:
-        print("Uso: python batch_query.py <file_domande> [output_file] [--verbose]")
-        print("Formati supportati: .txt, .json, .csv, .xlsx, .xls")
-        print("Esempi:")
-        print("  python batch_query.py domande.txt")
-        print("  python batch_query.py domande.xlsx risultati.csv")
-        print("  python batch_query.py 'domande chatbot.xlsx' risultati.json --verbose")
+    if len(sys.argv) < 2 or '--help' in sys.argv or '-h' in sys.argv:
+        print("Batch Query Tool per StudentsBot")
+        print("\nUSO:")
+        print("  python batch_query.py <file_domande> [output_file] [--verbose] [--limit N]")
+        print("\nFORMATI SUPPORTATI:")
+        print("  .txt, .json, .csv, .xlsx, .xls")
+        print("\nPARAMETRI:")
+        print("  --verbose     Mostra output dettagliato durante l'elaborazione")
+        print("  --limit N     Elabora solo le prime N domande del file")
+        print("  --help, -h    Mostra questo aiuto")
+        print("\nESEMPI:")
+        print("  python batch_query.py data/queries.txt")
+        print("  python batch_query.py data/queries.txt risultati.csv")
+        print("  python batch_query.py data/queries.txt risultati.json --verbose")
+        print("  python batch_query.py data/queries.txt risultati.json --limit 10")
+        print("  python batch_query.py data/queries.txt risultati.json --limit 5 --verbose")
+        print("\nESEMPI SUBSET TESTING:")
+        print("  python batch_query.py data/queries.txt test_5.json --limit 5      # Prime 5 domande")
+        print("  python batch_query.py data/queries.txt test_10.json --limit 10    # Prime 10 domande")
+        print("  python batch_query.py data/queries.txt debug.json --limit 3 --verbose  # Debug veloce")
         sys.exit(1)
     
     questions_file = sys.argv[1]
     output_file = sys.argv[2] if len(sys.argv) > 2 and not sys.argv[2].startswith('--') else None
     verbose = '--verbose' in sys.argv
+    
+    # Parse limit parameter
+    limit = None
+    if '--limit' in sys.argv:
+        try:
+            limit_index = sys.argv.index('--limit')
+            if limit_index + 1 < len(sys.argv):
+                limit = int(sys.argv[limit_index + 1])
+                if limit <= 0:
+                    print("Errore: il valore di --limit deve essere un numero positivo.")
+                    sys.exit(1)
+            else:
+                print("Errore: --limit richiede un numero.")
+                sys.exit(1)
+        except ValueError:
+            print("Errore: il valore di --limit deve essere un numero valido.")
+            sys.exit(1)
     
     if not os.path.exists(questions_file):
         print(f"Errore: File {questions_file} non trovato.")
@@ -150,6 +180,13 @@ def main():
         if not questions:
             print("Errore: Nessuna domanda trovata nel file.")
             sys.exit(1)
+        
+        # Applica il limite se specificato
+        total_questions = len(questions)
+        if limit and limit < total_questions:
+            questions = questions[:limit]
+            print(f"Limite applicato: elaborazione di {limit} domande su {total_questions} totali")
+        
     except Exception as e:
         print(f"Errore nel caricamento delle domande: {e}")
         sys.exit(1)
@@ -160,7 +197,11 @@ def main():
     # Mostra statistiche finali
     successful = len([r for r in results if not r['answer'].startswith('ERRORE:')])
     print(f"\nStatistiche finali:")
-    print(f"- Domande elaborate: {len(results)}")
+    if limit and limit < total_questions:
+        print(f"- Domande totali nel file: {total_questions}")
+        print(f"- Domande elaborate (limite): {len(results)}")
+    else:
+        print(f"- Domande elaborate: {len(results)}")
     print(f"- Risposte riuscite: {successful}")
     print(f"- Errori: {len(results) - successful}")
 

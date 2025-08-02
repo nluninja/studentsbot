@@ -1,0 +1,16 @@
+{
+  "timestamp": "20250802_125115",
+  "total_queries": 2,
+  "results": [
+    {
+      "question": "Quali sono i corsi magistrali attivi all’Università Cattolica?",
+      "answer": "Dai documenti forniti, ecco i corsi di laurea magistrale menzionati:\n\n*   Direzione e consulenza aziendale (in modalità Blended)\n*   Lavoro sociale e coordinamento di servizi per immigrazione, povertà e non autosufficienza (in modalità Blended, sede di Brescia)\n*   Giurisprudenza (laurea magistrale a ciclo unico)\n*   Scienze della formazione primaria (laurea magistrale a ciclo unico)\n*   Licenza (titolo equiparato alla laurea magistrale) presso l'Istituto Superiore di Scienze Religiose\n\nInoltre, viene indicato che la Facoltà di Scienze agrarie, alimentari e ambientali offre corsi di laurea magistrale.",
+      "timestamp": "2025-08-02T12:50:56.586684"
+    },
+    {
+      "question": "Quali corsi magistrali sono offerti a Milano?",
+      "answer": "Ecco l'elenco dei corsi magistrali offerti nella sede di Milano:\n\nEconomia e legislazione d'impresa\nGestione dei beni culturali e dello spettacolo\nInnovation and technology management\nManagement\nMarketing\nPsicologia clinica e promozione della salute. Persona, relazioni familiari e di comunità\nPsicologia degli interventi clinici nei contesti sociali\nScienze e tecniche delle attività motorie preventive e adattate\nStoria e critica delle arti e dello spettacolo\nThe art and industry of narration\nPolitiche europee ed internazionali\nPolitiche per la sostenibilità: ambiente, economia e società\nComunicazione per l'impresa, i media e le organizzazioni complesse\nFilosofia\nLettere classiche e moderne\nScienze dell'antichità\nLingue, letterature e culture straniere\nProgettazione pedagogica e formazione delle risorse umane\nScienze infermieristiche e ostetriche\nBiotecnologie per la salute umana e l'ambiente\nGiurisprudenza (LMG/01)\nBanking and Finance\nScienze statistiche ed attuariali",
+      "timestamp": "2025-08-02T12:51:15.330637"
+    }
+  ]
+}

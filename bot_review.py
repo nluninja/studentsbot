@@ -119,7 +119,7 @@ def get_vectorstore(force_recreate=False):
     vs.save_local(VECTORSTORE_PATH)
     return vs
 
-def query_chatbot(question, vectorstore=None, chat_history=None, verbose=False):
+def query_chatbot(question, vectorstore=None, chat_history=None, verbose=False, progress_info=None):
     """
     Query the chatbot with a question.
     
@@ -128,6 +128,7 @@ def query_chatbot(question, vectorstore=None, chat_history=None, verbose=False):
         vectorstore: FAISS vectorstore (if None, will try to load existing one)
         chat_history: List of chat history messages (optional)
         verbose (bool): Whether to print debug information
+        progress_info (tuple): Optional (current, total) for progress display
         
     Returns:
         str: The bot's answer
@@ -152,6 +153,11 @@ def query_chatbot(question, vectorstore=None, chat_history=None, verbose=False):
         # Get response
         if verbose:
             print(f"Query: {question}")
+        
+        # Print progress counter before LLM call
+        if progress_info:
+            current, total = progress_info
+            print(f"🤖 Chiamata LLM {current} di {total}...")
         
         response = rag_chain(input_data)
         answer = response.get("answer", "Non ho trovato una risposta.")

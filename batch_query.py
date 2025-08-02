@@ -64,7 +64,7 @@ def save_results(results, output_file):
     
     elif output_file.endswith('.csv'):
         with open(output_file, 'w', encoding='utf-8', newline='') as f:
-            writer = csv.DictWriter(f, fieldnames=['question', 'answer', 'timestamp'])
+            writer = csv.DictWriter(f, fieldnames=['question', 'answer', 'true_answer', 'timestamp'])
             writer.writeheader()
             for result in results:
                 writer.writerow(result)
@@ -93,10 +93,11 @@ def batch_query(questions, verbose=False, save_to=None):
             print(f"Progresso: {i}/{total}")
         
         try:
-            answer = query_chatbot(question, verbose=verbose, progress_info=(i, total))
+            answer = query_chatbot(question, verbose=verbose)
             result = {
                 'question': question,
                 'answer': answer,
+                'true_answer': '',
                 'timestamp': datetime.now().isoformat()
             }
             results.append(result)
@@ -110,6 +111,7 @@ def batch_query(questions, verbose=False, save_to=None):
             result = {
                 'question': question,
                 'answer': f"ERRORE: {e}",
+                'true_answer': '',
                 'timestamp': datetime.now().isoformat()
             }
             results.append(result)
@@ -120,7 +122,7 @@ def batch_query(questions, verbose=False, save_to=None):
     if save_to:
         save_results(results, save_to)
         print(f"Risultati salvati in: {save_to}")
-    
+
     return results
 
 def main():

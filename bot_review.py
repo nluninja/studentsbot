@@ -17,7 +17,7 @@ from langchain_community.chat_message_histories import ChatMessageHistory
 # === CONFIG ===
 MARKDOWN_DIR = "output_crawler"
 VECTORSTORE_PATH = "index"
-MODEL_NAME_LLM = "gemini-2.5-pro"
+MODEL_NAME_LLM = "gemini-2.0-flash"
 MODEL_NAME_EMBEDDINGS = "models/embedding-001"
 BATCH_SIZE = 100
 BATCH_WAIT = 2  # secondi
@@ -119,7 +119,7 @@ def get_vectorstore(force_recreate=False):
     vs.save_local(VECTORSTORE_PATH)
     return vs
 
-def query_chatbot(question, vectorstore=None, chat_history=None, verbose=False, progress_info=None):
+def query_chatbot(question, vectorstore=None, chat_history=None, verbose=False):
     """
     Query the chatbot with a question.
     
@@ -128,7 +128,6 @@ def query_chatbot(question, vectorstore=None, chat_history=None, verbose=False, 
         vectorstore: FAISS vectorstore (if None, will try to load existing one)
         chat_history: List of chat history messages (optional)
         verbose (bool): Whether to print debug information
-        progress_info (tuple): Optional (current, total) for progress display
         
     Returns:
         str: The bot's answer
@@ -153,11 +152,6 @@ def query_chatbot(question, vectorstore=None, chat_history=None, verbose=False, 
         # Get response
         if verbose:
             print(f"Query: {question}")
-        
-        # Print progress counter before LLM call
-        if progress_info:
-            current, total = progress_info
-            print(f"🤖 Chiamata LLM {current} di {total}...")
         
         response = rag_chain(input_data)
         answer = response.get("answer", "Non ho trovato una risposta.")
@@ -247,14 +241,11 @@ def create_rag_chain(vectorstore):
         chat_history = input.get("chat_history", [])
         docs = retriever.invoke(query)
         print(query)
+        print("invoking Mr. Google..")
         for i, doc in enumerate(docs):
-            print(f"Document {i + 1}:")
-            #print(doc.page_content)
-            print("Metadata:", doc.metadata)
-            print("-" * 40)
-        print("invoking chain...")    
+            print("*", doc.metadata["source"])
         output = question_answer_chain.invoke({"input": query, "context": docs, "chat_history": chat_history})
-        print("out recv")
+        
         if isinstance(output, dict):
             return output
         else:

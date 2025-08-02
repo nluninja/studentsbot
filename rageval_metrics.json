@@ -1,0 +1,119 @@
+{
+  "evaluation_timestamp": "2025-08-02T15:50:26.724111",
+  "aggregate_metrics": {
+    "total_responses": 1,
+    "similarity": {
+      "mean": 0.00889248181083266,
+      "min": 0.00889248181083266,
+      "max": 0.00889248181083266,
+      "std": 0.0
+    },
+    "keyword_precision": {
+      "mean": 0.3617021276595745,
+      "min": 0.3617021276595745,
+      "max": 0.3617021276595745
+    },
+    "keyword_recall": {
+      "mean": 0.37777777777777777,
+      "min": 0.37777777777777777,
+      "max": 0.37777777777777777
+    },
+    "keyword_f1": {
+      "mean": 0.3695652173913044,
+      "min": 0.3695652173913044,
+      "max": 0.3695652173913044
+    },
+    "rouge_metrics": {
+      "rouge_1_f1": {
+        "mean": 0.4658385093167702,
+        "min": 0.4658385093167702,
+        "max": 0.4658385093167702
+      },
+      "rouge_2_f1": {
+        "mean": 0.20000000000000004,
+        "min": 0.20000000000000004,
+        "max": 0.20000000000000004
+      },
+      "rouge_l_f1": {
+        "mean": 0.2732919254658385,
+        "min": 0.2732919254658385,
+        "max": 0.2732919254658385
+      }
+    },
+    "bleu_metrics": {
+      "mean": 0.16461488028713886,
+      "min": 0.16461488028713886,
+      "max": 0.16461488028713886
+    },
+    "quality_distribution": {
+      "excellent (≥0.8)": {
+        "count": 0,
+        "percentage": 0.0
+      },
+      "good (0.6-0.8)": {
+        "count": 0,
+        "percentage": 0.0
+      },
+      "fair (0.4-0.6)": {
+        "count": 0,
+        "percentage": 0.0
+      },
+      "poor (<0.4)": {
+        "count": 1,
+        "percentage": 100.0
+      }
+    }
+  },
+  "detailed_evaluations": [
+    {
+      "query": "Quali sono i corsi magistrali attivi all’Università Cattolica?",
+      "answer": "Ecco l'elenco dei corsi di laurea magistrale attivi all'Università Cattolica:\n\n*   Agricultural and Food Economics - Economia agroalimentare\n*   Artificial Intelligence and Data Science\n*   Banking and Finance\n*   Biologia\n*   Biomedical Engineering\n*   Comunicazione per l'impresa, i media e le organizzazioni complesse\n*   Data Analytics for Business and Economics\n*   Direzione e consulenza aziendale\n*   Economia\n*   Economics\n*   Economics and Management of Arts, Culture, Media and Entertainment\n*   European Economics and Public Affairs\n*   Filologia moderna\n*   Filosofia\n*   Finance\n*   Food processing: innovation & tradition\n*   Gestione dei contenuti digitali per i media, le imprese e i patrimoni culturali\n*   Global Business Management\n*   Innovation and Technology Management\n*   International Management\n*   Interpretariato e traduzione\n*   Italian Studies\n*   Management\n*   Management for Sustainable Development - Gestione della sostenibilità\n*   Marketing e mercati globali\n*   Mathematics\n*   Media Education\n*   Metodologie per la conservazione e il restauro dei beni culturali\n*   Psicologia\n*   Relazioni internazionali\n*   Scienze agrarie e ambientali - Agricultural Sciences and Environmental Management\n*   Scienze cognitive e processi decisionali\n*   Scienze della formazione primaria\n*   Scienze statistiche\n*   Service Management\n*   Strategic Communication\n*   Teorie e strumenti per la comunicazione\n*   Viticoltura ed enologia",
+      "true_answer": "Actuarial sciences, risk and data analysis\nAgricoltura sostenibile e di precisione\nAgricultural and food economics\nApplied data science for banking and finance\nArcheologia e Storia dell'arte\nBanking and Finance\nBanking e consulting\nBiotecnologie per la medicina personalizzata\nCommunication for Business, Media  and Culture\nComunicazione per l'impresa, i media e le organizzazioni complesse - CIMO\nConsulenza pedagogica per la disabilità e la marginalità\nConsumer behaviour: psychology applied to food, health and environment\nData analytics for business\nDigital learning e media education\nDirezione e consulenza aziendale\nEconomia\nEconomia dei mercati e degli intermediari finanziari\nEconomia e gestione dei beni culturali e dello spettacolo\nEconomia e legislazione d'impresa\nEconomics\nEuropean studies in investor relations and financial communication\nFilologia moderna\nFilosofia\nMatematica\nScienze e tecniche del benessere e dello sport\nScienze e tecnologie alimentari\nScienze infermieristiche e ostetriche\nScienze linguistiche\nScienze pedagogiche e servizi alla persona\nScienze riabilitative delle professioni sanitarie\nThe Art and Industry of Narration: from Literature to Cinema and TV",
+      "similarity_score": 0.00889248181083266,
+      "keyword_metrics": {
+        "precision": 0.3617021276595745,
+        "recall": 0.37777777777777777,
+        "f1": 0.3695652173913044,
+        "overlap_count": 34,
+        "answer_keywords": 94,
+        "true_keywords": 90
+      },
+      "length_metrics": {
+        "char_answer": 1460,
+        "char_true": 1190,
+        "char_ratio": 1.226890756302521,
+        "words_answer": 200,
+        "words_true": 159,
+        "words_ratio": 1.2578616352201257
+      },
+      "rouge_metrics": {
+        "rouge_1": {
+          "precision": 0.4658385093167702,
+          "recall": 0.4658385093167702,
+          "f1": 0.4658385093167702
+        },
+        "rouge_2": {
+          "precision": 0.2,
+          "recall": 0.2,
+          "f1": 0.20000000000000004
+        },
+        "rouge_l": {
+          "precision": 0.2732919254658385,
+          "recall": 0.2732919254658385,
+          "f1": 0.2732919254658385
+        }
+      },
+      "bleu_metrics": {
+        "bleu": 0.16461488028713886,
+        "brevity_penalty": 1.0,
+        "precision_scores": [
+          0.4658385093167702,
+          0.2,
+          0.11320754716981132,
+          0.06962025316455696
+        ]
+      },
+      "timestamp": "2025-08-02T15:50:00.229907"
+    }
+  ]
+}

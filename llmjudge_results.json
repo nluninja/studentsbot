@@ -1,0 +1,49 @@
+{
+  "evaluation_timestamp": "2025-08-02T15:54:07.513729",
+  "model_used": "gemini-2.0-flash",
+  "statistics": {
+    "total_evaluations": 1,
+    "equivalent_responses": 0,
+    "non_equivalent_responses": 1,
+    "equivalence_rate": 0.0,
+    "average_confidence": 0.9,
+    "confidence_distribution": {
+      "high (≥0.8)": {
+        "count": 1,
+        "percentage": 100.0
+      },
+      "medium (0.5-0.8)": {
+        "count": 0,
+        "percentage": 0.0
+      },
+      "low (<0.5)": {
+        "count": 0,
+        "percentage": 0.0
+      }
+    },
+    "processing_status": {
+      "success": 1
+    }
+  },
+  "detailed_results": [
+    {
+      "query": "Quali sono i corsi magistrali attivi all’Università Cattolica?",
+      "answer": "Ecco l'elenco dei corsi di laurea magistrale attivi all'Università Cattolica:\n\n*   Agricultural and Food Economics - Economia agroalimentare\n*   Artificial Intelligence and Data Science\n*   Banking and Finance\n*   Biologia\n*   Biomedical Engineering\n*   Comunicazione per l'impresa, i media e le organizzazioni complesse\n*   Data Analytics for Business and Economics\n*   Direzione e consulenza aziendale\n*   Economia\n*   Economics\n*   Economics and Management of Arts, Culture, Media and Entertainment\n*   European Economics and Public Affairs\n*   Filologia moderna\n*   Filosofia\n*   Finance\n*   Food processing: innovation & tradition\n*   Gestione dei contenuti digitali per i media, le imprese e i patrimoni culturali\n*   Global Business Management\n*   Innovation and Technology Management\n*   International Management\n*   Interpretariato e traduzione\n*   Italian Studies\n*   Management\n*   Management for Sustainable Development - Gestione della sostenibilità\n*   Marketing e mercati globali\n*   Mathematics\n*   Media Education\n*   Metodologie per la conservazione e il restauro dei beni culturali\n*   Psicologia\n*   Relazioni internazionali\n*   Scienze agrarie e ambientali - Agricultural Sciences and Environmental Management\n*   Scienze cognitive e processi decisionali\n*   Scienze della formazione primaria\n*   Scienze statistiche\n*   Service Management\n*   Strategic Communication\n*   Teorie e strumenti per la comunicazione\n*   Viticoltura ed enologia",
+      "true_answer": "Actuarial sciences, risk and data analysis\nAgricoltura sostenibile e di precisione\nAgricultural and food economics\nApplied data science for banking and finance\nArcheologia e Storia dell'arte\nBanking and Finance\nBanking e consulting\nBiotecnologie per la medicina personalizzata\nCommunication for Business, Media  and Culture\nComunicazione per l'impresa, i media e le organizzazioni complesse - CIMO\nConsulenza pedagogica per la disabilità e la marginalità\nConsumer behaviour: psychology applied to food, health and environment\nData analytics for business\nDigital learning e media education\nDirezione e consulenza aziendale\nEconomia\nEconomia dei mercati e degli intermediari finanziari\nEconomia e gestione dei beni culturali e dello spettacolo\nEconomia e legislazione d'impresa\nEconomics\nEuropean studies in investor relations and financial communication\nFilologia moderna\nFilosofia\nMatematica\nScienze e tecniche del benessere e dello sport\nScienze e tecnologie alimentari\nScienze infermieristiche e ostetriche\nScienze linguistiche\nScienze pedagogiche e servizi alla persona\nScienze riabilitative delle professioni sanitarie\nThe Art and Industry of Narration: from Literature to Cinema and TV",
+      "llm_judgment": {
+        "equivalent": false,
+        "confidence": 0.9,
+        "reasoning": "Le due risposte non sono equivalenti in quanto presentano un elenco di corsi di laurea magistrale differenti. La risposta fornita dal chatbot è incompleta e presenta delle imprecisioni.",
+        "raw_response": "```json\n{\n  \"equivalent\": false,\n  \"confidence\": 0.9,\n  \"reasoning\": \"Le due risposte non sono equivalenti in quanto presentano un elenco di corsi di laurea magistrale differenti. La risposta fornita dal chatbot è incompleta e presenta delle imprecisioni.\"\n}\n```",
+        "status": "success"
+      },
+      "timestamp": "2025-08-02T15:50:00.229907",
+      "original_item": {
+        "query": "Quali sono i corsi magistrali attivi all’Università Cattolica?",
+        "answer": "Ecco l'elenco dei corsi di laurea magistrale attivi all'Università Cattolica:\n\n*   Agricultural and Food Economics - Economia agroalimentare\n*   Artificial Intelligence and Data Science\n*   Banking and Finance\n*   Biologia\n*   Biomedical Engineering\n*   Comunicazione per l'impresa, i media e le organizzazioni complesse\n*   Data Analytics for Business and Economics\n*   Direzione e consulenza aziendale\n*   Economia\n*   Economics\n*   Economics and Management of Arts, Culture, Media and Entertainment\n*   European Economics and Public Affairs\n*   Filologia moderna\n*   Filosofia\n*   Finance\n*   Food processing: innovation & tradition\n*   Gestione dei contenuti digitali per i media, le imprese e i patrimoni culturali\n*   Global Business Management\n*   Innovation and Technology Management\n*   International Management\n*   Interpretariato e traduzione\n*   Italian Studies\n*   Management\n*   Management for Sustainable Development - Gestione della sostenibilità\n*   Marketing e mercati globali\n*   Mathematics\n*   Media Education\n*   Metodologie per la conservazione e il restauro dei beni culturali\n*   Psicologia\n*   Relazioni internazionali\n*   Scienze agrarie e ambientali - Agricultural Sciences and Environmental Management\n*   Scienze cognitive e processi decisionali\n*   Scienze della formazione primaria\n*   Scienze statistiche\n*   Service Management\n*   Strategic Communication\n*   Teorie e strumenti per la comunicazione\n*   Viticoltura ed enologia",
+        "true_answer": "Actuarial sciences, risk and data analysis\nAgricoltura sostenibile e di precisione\nAgricultural and food economics\nApplied data science for banking and finance\nArcheologia e Storia dell'arte\nBanking and Finance\nBanking e consulting\nBiotecnologie per la medicina personalizzata\nCommunication for Business, Media  and Culture\nComunicazione per l'impresa, i media e le organizzazioni complesse - CIMO\nConsulenza pedagogica per la disabilità e la marginalità\nConsumer behaviour: psychology applied to food, health and environment\nData analytics for business\nDigital learning e media education\nDirezione e consulenza aziendale\nEconomia\nEconomia dei mercati e degli intermediari finanziari\nEconomia e gestione dei beni culturali e dello spettacolo\nEconomia e legislazione d'impresa\nEconomics\nEuropean studies in investor relations and financial communication\nFilologia moderna\nFilosofia\nMatematica\nScienze e tecniche del benessere e dello sport\nScienze e tecnologie alimentari\nScienze infermieristiche e ostetriche\nScienze linguistiche\nScienze pedagogiche e servizi alla persona\nScienze riabilitative delle professioni sanitarie\nThe Art and Industry of Narration: from Literature to Cinema and TV",
+        "timestamp": "2025-08-02T15:50:00.229907"
+      }
+    }
+  ]
+}

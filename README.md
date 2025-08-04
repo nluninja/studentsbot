@@ -1,233 +1,238 @@
 # StudentsBot 🎓
 
-Un chatbot intelligente per fornire informazioni su corsi, esami, servizi e procedure dell'Università Cattolica utilizzando tecnologie RAG (Retrieval-Augmented Generation).
+An intelligent chatbot to provide information about courses, exams, services and procedures of Università Cattolica using RAG (Retrieval-Augmented Generation) technologies.
 
-## 🚀 Caratteristiche
+## 🎓 Academic Context
 
-- **Chat interattivo** per domande in linguaggio naturale
-- **Elaborazione massive** di query da file Excel/CSV/TXT
-- **Indicizzazione automatica** di documenti crawlati
-- **Supporto multilingua** (Italiano/Inglese)
-- **Modalità debug** integrate per sviluppo
+This work was developed by **Eleonora Farolfi** during his thesis work, under the supervision of **Prof. Andrea Belli** at **Università Cattolica del Sacro Cuore**.
 
-## 🛠️ Tecnologie
+## 🚀 Features
 
-- **LangChain** - Framework per applicazioni AI
-- **Google Gemini** - Modello di linguaggio (LLM)
-- **FAISS** - Vector store per ricerca semantica
-- **Pandas** - Elaborazione file Excel
+- **Interactive chat** for natural language questions
+- **Batch processing** of queries from Excel/CSV/TXT files
+- **Automatic indexing** of crawled documents
+- **Multi-language support** (Italian/English)
+- **Integrated debug modes** for development
+
+## 🛠️ Technologies
+
+- **LangChain** - Framework for AI applications
+- **Google Gemini** - Language model (LLM)
+- **FAISS** - Vector store for semantic search
+- **Pandas** - Excel file processing
 - **BeautifulSoup** - Web crawling
 
-## 📦 Installazione
+## 📦 Installation
 
-### Prerequisiti
+### Prerequisites
 - Python 3.8+
-- API Key Google Gemini
+- Google Gemini API Key
 
-### Setup Rapido
+### Quick Setup
 ```bash
-# Clona il repository
+# Clone the repository
 git clone https://github.com/nluninja/studentsbot.git
 cd studentsbot
 
-# Setup automatico
+# Automatic setup
 source activate_studentsbot.sh
 
-# Configura API key (modifica .env)
+# Configure API key (edit .env)
 GOOGLE_API_KEY=your_api_key_here
 
-# Avvia il bot
+# Start the bot
 studentsbot
 ```
 
-### Setup Manuale
+### Manual Setup
 ```bash
-# Crea ambiente virtuale
+# Create virtual environment
 python -m venv venv
 source venv/bin/activate
 
-# Installa dipendenze
+# Install dependencies
 pip install -r requirements.txt
 
-# Configura environment
+# Configure environment
 cp .env.example .env
-# Modifica .env con la tua GOOGLE_API_KEY
+# Edit .env with your GOOGLE_API_KEY
 ```
 
-## 🚀 Utilizzo
+## 🚀 Usage
 
-### Modalità Interattiva
+### Interactive Mode
 ```bash
-# Prima configurazione
-python bot_review.py --index_only       # Crea vectorstore
-python bot_review.py --interactive      # Avvia chat
+# Initial configuration
+python bot_review.py --index_only       # Create vectorstore
+python bot_review.py --interactive      # Start chat
 
-# Configurazione guidata
-python bot_review.py                    # Modalità default
+# Guided configuration
+python bot_review.py                    # Default mode
 
-# Aiuto completo
+# Full help
 python bot_review.py --help
 ```
 
-### Elaborazione Massive
+### Batch Processing
 ```bash
-# Da file Excel (colonna A)
+# From Excel file (column A)
 python batch_query.py "data/domande chatbot.xlsx" risultati.json --verbose
 
-# Da file di testo
+# From text file
 python batch_query.py data/queries.txt risultati.csv
 
-# Estrai domande da Excel
-python extract_queries.py  # crea data/queries.txt
+# Extract questions from Excel
+python extract_queries.py  # creates data/queries.txt
 ```
 
 ### Web Crawling
 ```bash
-# Raccolta dati dal sito web
+# Data collection from website
 python crawler.py
 ```
 
-### 📊 Valutazione delle Risposte
+### 📊 Response Evaluation
 
-Il progetto include diversi strumenti per valutare la qualità delle risposte del chatbot:
+The project includes several tools to evaluate the quality of chatbot responses:
 
-#### 1. Valutazione Automatica (rageval.py)
+#### 1. Automatic Evaluation (rageval.py)
 ```bash
-# Valutazione completa con metriche multiple
+# Complete evaluation with multiple metrics
 python rageval.py risultati.json
 
-# Salva risultati dettagliati
+# Save detailed results
 python rageval.py risultati.json valutazione_dettagliata.json
 ```
 
-**Metriche calcolate:**
-- **Similarità testuale** (difflib SequenceMatcher)
-- **ROUGE-1, ROUGE-2, ROUGE-L** (n-gram overlap e LCS)
-- **BLEU score** (precision con brevity penalty)
+**Calculated metrics:**
+- **Text similarity** (difflib SequenceMatcher)
+- **ROUGE-1, ROUGE-2, ROUGE-L** (n-gram overlap and LCS)
+- **BLEU score** (precision with brevity penalty)
 - **Keyword overlap** (precision, recall, F1)
 
-#### 2. Valutazione LLM-as-Judge (llm_as_judge.py)
+#### 2. LLM-as-Judge Evaluation (llm_as_judge.py)
 ```bash
-# Usa il modello LLM per giudicare equivalenza semantica
+# Use LLM model to judge semantic equivalence
 python llm_as_judge.py risultati.json
 
-# Salva giudizi dettagliati
+# Save detailed judgments
 python llm_as_judge.py risultati.json -o giudizi_llm.json
 ```
 
-**Caratteristiche LLM Judge:**
-- Valutazione semantica intelligente
-- Confidence score per ogni giudizio
-- Reasoning dettagliato per le decisioni
-- Gestione robusta degli errori
+**LLM Judge features:**
+- Intelligent semantic evaluation
+- Confidence score for each judgment
+- Detailed reasoning for decisions
+- Robust error handling
 
-## 📁 Struttura Progetto
+## 📁 Project Structure
 
 ```
 studentsbot/
-├── 🤖 bot_review.py           # Bot principale con interfaccia
-├── 📊 batch_query.py          # Elaborazione massive query
-├── 🕷️ crawler.py              # Web crawler per raccolta dati
-├── 📋 extract_queries.py      # Estrazione domande da Excel
-├── 📊 rageval.py              # Valutazione completa (ROUGE, BLEU, etc)
-├── 🧠 llm_as_judge.py         # Valutazione semantica con LLM
-├── 📁 data/                  # Dati di input e test
-│   ├── 📄 domande chatbot.xlsx  # File Excel con domande
-│   └── 📝 queries.txt          # Domande estratte (56 domande)
-├── 📁 output_crawler/        # Documenti crawlati (150+ file)
-├── 🗄️ index/                 # Vectorstore FAISS (generato)
-├── 🐍 venv/                  # Ambiente virtuale Python
-├── ⚙️ activate_studentsbot.sh # Script setup automatico
-├── 📦 requirements.txt       # Dipendenze Python
-├── 📖 README.md              # Documentazione
-├── 🚫 .gitignore            # File da ignorare
-├── ⚙️ .env.example          # Template variabili ambiente
-└── 📄 LICENSE               # Licenza MIT
+├── 🤖 bot_review.py           # Main bot with interface
+├── 📊 batch_query.py          # Batch query processing
+├── 🕷️ crawler.py              # Web crawler for data collection
+├── 📋 extract_queries.py      # Extract questions from Excel
+├── 📊 rageval.py              # Complete evaluation (ROUGE, BLEU, etc)
+├── 🧠 llm_as_judge.py         # Semantic evaluation with LLM
+├── 📁 data/                  # Input and test data
+│   ├── 📄 domande chatbot.xlsx  # Excel file with questions
+│   └── 📝 queries.txt          # Extracted questions (56 questions)
+├── 📁 output_crawler/        # Crawled documents (150+ files)
+├── 🗄️ index/                 # FAISS vectorstore (generated)
+├── 🐍 venv/                  # Python virtual environment
+├── ⚙️ activate_studentsbot.sh # Automatic setup script
+├── 📦 requirements.txt       # Python dependencies
+├── 📖 README.md              # Documentation
+├── 🚫 .gitignore            # Files to ignore
+├── ⚙️ .env.example          # Environment variables template
+└── 📄 LICENSE               # MIT License
 ```
 
-## 🎯 Comandi Disponibili
+## 🎯 Available Commands
 
-### Bot Principale
-| Comando | Descrizione |
+### Main Bot
+| Command | Description |
 |---------|-------------|
-| `python bot_review.py --help` | Mostra aiuto completo |
-| `python bot_review.py --interactive` | Chat diretto (veloce) |
-| `python bot_review.py --index_only` | Solo indicizzazione |
-| `python bot_review.py` | Configurazione guidata |
+| `python bot_review.py --help` | Show complete help |
+| `python bot_review.py --interactive` | Direct chat (fast) |
+| `python bot_review.py --index_only` | Indexing only |
+| `python bot_review.py` | Guided configuration |
 
-### Elaborazione Batch
-| Formato | Esempio |
+### Batch Processing
+| Format | Example |
 |---------|---------|
 | Excel | `python batch_query.py data/domande.xlsx risultati.json` |
 | CSV | `python batch_query.py data/domande.csv risultati.json` |
 | TXT | `python batch_query.py data/queries.txt risultati.csv` |
 
-## 🔧 Configurazione
+## 🔧 Configuration
 
-### File .env
+### .env File
 ```env
 GOOGLE_API_KEY=your_gemini_api_key_here
 ```
 
-### Parametri Bot (bot_review.py)
+### Bot Parameters (bot_review.py)
 ```python
-MARKDOWN_DIR = "output_crawler"     # Directory documenti
-VECTORSTORE_PATH = "index"          # Path vectorstore FAISS
-MODEL_NAME_LLM = "gemini-2.5-pro"   # Modello principale
-BATCH_SIZE = 100                    # Dimensione batch indicizzazione
-BATCH_WAIT = 2                      # Pausa tra batch (secondi)
+MARKDOWN_DIR = "output_crawler"     # Documents directory
+VECTORSTORE_PATH = "index"          # FAISS vectorstore path
+MODEL_NAME_LLM = "gemini-2.5-pro"   # Main model
+BATCH_SIZE = 100                    # Indexing batch size
+BATCH_WAIT = 2                      # Pause between batches (seconds)
 ```
 
-## 🐛 Debug e Sviluppo
+## 🐛 Debug and Development
 
-Per il debug del codice:
+For code debugging:
 
-1. **Modalità verbose**: Usa `--verbose` nei comandi per output dettagliato
-2. **Test con sample**: Crea file di test con poche domande per debug veloce
-3. **Logs**: Controlla i messaggi di errore nel terminale
-4. **VSCode**: Configura il tuo ambiente di debug come preferisci
+1. **Verbose mode**: Use `--verbose` in commands for detailed output
+2. **Sample testing**: Create test files with few questions for quick debug
+3. **Logs**: Check error messages in terminal
+4. **VSCode**: Configure your debug environment as preferred
 
-## 📊 Esempi di Domande
+## 📊 Sample Questions
 
-- "Quali sono i corsi magistrali attivi all'Università Cattolica?"
-- "Quali esami ci sono nel primo anno di Data Analytics?"
-- "Come posso iscrivermi a un programma Erasmus?"
-- "Quali sono gli sbocchi professionali per Economia?"
+- "What are the active master's degree courses at Università Cattolica?"
+- "What exams are there in the first year of Data Analytics?"
+- "How can I enroll in an Erasmus program?"
+- "What are the career opportunities for Economics?"
 
-## 🗂️ Dati Disponibili
+## 🗂️ Available Data
 
-- **150+ documenti** crawlati dal sito ufficiale
-- **56 domande** di test estratte da Excel
-- **Corsi magistrali** di tutte le sedi
-- **Servizi studenti** e procedure
-- **Programmi internazionali** e stage
+- **150+ documents** crawled from official website
+- **56 test questions** extracted from Excel
+- **Master's degree courses** from all campuses
+- **Student services** and procedures
+- **International programs** and internships
 
-## 🤝 Contribuire
+## 🤝 Contributing
 
-1. Fai fork del progetto
-2. Crea un branch per la feature (`git checkout -b feature/AmazingFeature`)
-3. Commit delle modifiche (`git commit -m 'Add some AmazingFeature'`)
-4. Push del branch (`git push origin feature/AmazingFeature`)
-5. Apri una Pull Request
+1. Fork the project
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## 📝 Licenza
+## 📝 License
 
-Questo progetto è rilasciato sotto licenza MIT. Vedi il file `LICENSE` per dettagli.
+This project is released under the MIT License. See the `LICENSE` file for details.
 
-## 🆘 Supporto
+## 🆘 Support
 
-Se hai problemi o domande:
+If you have problems or questions:
 
-1. Controlla la [documentazione](#-utilizzo)
-2. Cerca nelle [Issues](https://github.com/YOUR_USERNAME/studentsbot/issues)
-3. Apri una nuova issue se necessario
+1. Check the [documentation](#-usage)
+2. Search in [Issues](https://github.com/YOUR_USERNAME/studentsbot/issues)
+3. Open a new issue if necessary
 
-## 🙏 Ringraziamenti
+## 🙏 Acknowledgments
 
-- [LangChain](https://langchain.com/) per il framework AI
-- [Google](https://ai.google.dev/) per l'API Gemini
-- [Università Cattolica](https://www.unicatt.it/) per i dati
+- [LangChain](https://langchain.com/) for the AI framework
+- [Google](https://ai.google.dev/) for the Gemini API
+- [Università Cattolica](https://www.unicatt.it/) for the data
+
 
 ---
 
-⭐ **Star questo progetto se ti è stato utile!**
+⭐ **Star this project if it was useful to you!**
